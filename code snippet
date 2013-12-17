@@ -1,0 +1,93 @@
+-(NSString *)sinceDateArabic:(NSDate *)oldDate {
+    
+    // make a string
+    NSString *postDate;
+    
+    // calculate the time difference since the old date
+    NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:oldDate];
+    
+    int minutes = secondsBetween / 60;
+    int hours = minutes / 60;
+    
+    // if you care about seconds
+    //    double seconds = secondsBetween;
+    
+    int days = minutes / 1440;
+    
+    // Start logic
+    switch (days) {
+        case 0: // today
+
+            switch (hours) { //this hour
+                case 0:
+
+                    switch (minutes) { //this minute
+                        case 0:
+                             // I do not go for seconds
+                            break;
+                        case 1:
+                            postDate = @"منذ دقيقة";
+                            break;
+                        case 2:
+                            postDate = @"منذ دقيقتين";
+                            break;
+                        default:
+                            
+                            if (minutes <= 10) {
+                                postDate = [NSString stringWithFormat:@"منذ %d دقائق",minutes];
+                                
+                            } else {
+                                postDate = [NSString stringWithFormat:@"منذ %d دقيقة",minutes];
+                                
+                                
+                            }
+                            
+                            
+                            break;
+                    }
+                    
+                    break;
+                case 1:
+                    postDate = @"منذ ساعة";
+                    break;
+                case 2:
+                    postDate = @"منذ ساعتين";
+                    break;
+                    
+                default:
+                    
+                    if (hours <= 10) {
+                        postDate = [NSString stringWithFormat:@"منذ %d ساعات",hours];
+                        
+                    } else {
+                        postDate = [NSString stringWithFormat:@"منذ %d ساعة",hours];
+                        
+                    }
+                    
+                    break;
+            }
+            
+            break;
+        case 1:
+            postDate = @"الأمس";
+            break;
+        case 2:
+            postDate = @"منذ يومين";
+            break;
+            
+        default:
+            if (days <= 10) {
+                postDate = [NSString stringWithFormat:@"منذ %d أيام",days];
+                
+            } else {
+                postDate = [NSString stringWithFormat:@"منذ %d يومًا",days];
+                
+                
+            }
+            break;
+    }
+    
+    return postDate;
+    
+}
+
