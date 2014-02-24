@@ -23,7 +23,8 @@
 
                     switch (minutes) { //this minute
                         case 0:
-                             // I do not go for seconds
+                             postDate = @"ثواني معدودة فقط";
+
                             break;
                         case 1:
                             postDate = @"منذ دقيقة";
